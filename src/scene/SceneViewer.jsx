@@ -109,7 +109,7 @@ export const SceneViewer = ({
       )}
 
       <Canvas
-        camera={{ position: [0, 1.8, 5.2], fov: 46 }}
+        camera={{ position: [0, 2.5, 7.8], fov: 48 }}
         gl={{ antialias: true, alpha: false, powerPreference: 'high-performance' }}
       >
         <color attach="background" args={['#030712']} />

@@ -24,7 +24,7 @@ export const RightSidebar = ({
   }
 
   return (
-    <aside className="w-80 md:w-96 h-[calc(100vh-4rem)] bg-space-950/90 backdrop-blur-xl border-l border-space-800 flex flex-col z-20 transition-all select-none overflow-hidden">
+    <aside className="w-80 md:w-96 lg:w-[410px] shrink-0 h-[calc(100vh-4rem)] bg-space-950/95 backdrop-blur-xl border-l border-space-800 flex flex-col z-20 transition-all select-none overflow-hidden">
       <div className="flex items-center justify-between p-3 border-b border-space-800 bg-space-900/60">
         <button
           onClick={() => setCollapsed(true)}

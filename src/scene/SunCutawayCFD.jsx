@@ -66,16 +66,16 @@ export const SunCutawayCFD = ({ cfdMode = 'natural', selectedLayer, onSelectLaye
 
   useFrame((_, delta) => {
     if (groupRef.current) {
-      groupRef.current.rotation.y += delta * 0.05;
+      groupRef.current.rotation.y += delta * 0.025;
     }
   });
 
-  // Cutaway angle: 250 degrees (leaves a 110-degree open wedge showing all inner layers)
-  const phiStart = 0.35;
+  // Open cutaway wedge: 250° closed shell leaves a 110° open wedge facing forward (+Z)
+  const phiStart = -0.95;
   const phiLength = Math.PI * 1.38;
 
   return (
-    <group ref={groupRef}>
+    <group ref={groupRef} rotation={[0.32, 0.45, 0]}>
       {SHELLS.map((s, idx) => {
         const col = s[cfdMode] || s.natural;
         const isOuter = idx >= 4;
@@ -95,23 +95,23 @@ export const SunCutawayCFD = ({ cfdMode = 'natural', selectedLayer, onSelectLaye
               <meshStandardMaterial
                 color={col}
                 emissive={col}
-                emissiveIntensity={isSel ? 1.2 : isOuter ? 0.65 : 0.85}
+                emissiveIntensity={isSel ? 1.35 : isOuter ? 0.72 : 0.92}
                 transparent={isOuter}
-                opacity={isOuter ? (isSel ? 0.55 : 0.28) : 0.96}
+                opacity={isOuter ? (isSel ? 0.65 : 0.32) : 0.98}
                 side={THREE.DoubleSide}
-                roughness={0.3}
+                roughness={0.25}
               />
             </mesh>
 
-            {/* Cross-Section Annular Rings on the two Cutaway Planes */}
+            {/* Cross-Section Annular Rings on both Cutaway Wedge Planes */}
             {s.rIn > 0 && (
               <>
                 <mesh rotation={[0, -phiStart + Math.PI / 2, 0]}>
-                  <ringGeometry args={[s.rIn, s.rOut, 32]} />
+                  <ringGeometry args={[s.rIn, s.rOut, 36]} />
                   <meshBasicMaterial color={col} side={THREE.DoubleSide} />
                 </mesh>
                 <mesh rotation={[0, -(phiStart + phiLength) + Math.PI / 2, 0]}>
-                  <ringGeometry args={[s.rIn, s.rOut, 32]} />
+                  <ringGeometry args={[s.rIn, s.rOut, 36]} />
                   <meshBasicMaterial color={col} side={THREE.DoubleSide} />
                 </mesh>
               </>
@@ -126,7 +126,7 @@ export const SunCutawayCFD = ({ cfdMode = 'natural', selectedLayer, onSelectLaye
         <meshBasicMaterial color={cfdMode === 'temp' ? '#00f0ff' : '#ffffff'} />
       </mesh>
 
-      <pointLight color="#ffeecc" intensity={4.5} distance={100} decay={1.2} />
+      <pointLight color="#ffeecc" intensity={5.0} distance={120} decay={1.1} />
     </group>
   );
 };
