@@ -1,5 +1,8 @@
 import React from 'react';
-import { Layers, Compass, Cpu, Atom, FileText, Globe, RotateCcw } from 'lucide-react';
+import { Layers, Compass, Cpu, Atom, FileText, Globe, RotateCcw, Github } from 'lucide-react';
+
+const REPO_URL = 'https://github.com/0xrphl/parker-solar-probe-mission-3D-dashboard-analysis';
+const DRIVE_DOCX_URL = 'https://docs.google.com/document/d/1b7eNMyO5pENDptTPzfeo3wBvgB3_d09c/edit?usp=sharing&ouid=102220368577968794134&rtpof=true&sd=true';
 
 export const Header = ({
   lang,
@@ -67,7 +70,18 @@ export const Header = ({
       {/* Actions and Bilingual Switcher (Spanish by default) */}
       <div className="flex items-center gap-2">
         <a
-          href="https://docs.google.com/document/d/1b7eNMyO5pENDptTPzfeo3wBvgB3_d09c/edit?usp=sharing&ouid=102220368577968794134&rtpof=true&sd=true"
+          href={REPO_URL}
+          target="_blank"
+          rel="noreferrer"
+          className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-mono font-semibold bg-space-800 hover:bg-space-700 text-slate-200 hover:text-white border border-space-600 hover:border-slate-400 shadow-sm transition-all"
+          title="Ver código fuente en GitHub"
+        >
+          <Github className="w-3.5 h-3.5 text-solar-gold" />
+          <span className="hidden sm:inline">GitHub</span>
+        </a>
+
+        <a
+          href={DRIVE_DOCX_URL}
           target="_blank"
           rel="noreferrer"
           className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-mono font-semibold bg-emerald-900/50 hover:bg-emerald-800/70 text-emerald-300 border border-emerald-400/50 shadow-sm transition-all"
