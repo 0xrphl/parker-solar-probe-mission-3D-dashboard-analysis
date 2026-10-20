@@ -1,5 +1,16 @@
 import React from 'react';
-import { Layers, Compass, Cpu, Atom, FileText, Globe, RotateCcw, Github } from 'lucide-react';
+import {
+  Layers,
+  Compass,
+  Cpu,
+  Atom,
+  FileText,
+  Globe,
+  RotateCcw,
+  Github,
+  PanelLeft,
+  PanelRight
+} from 'lucide-react';
 
 const REPO_URL = 'https://github.com/0xrphl/parker-solar-probe-mission-3D-dashboard-analysis';
 const DRIVE_DOCX_URL = 'https://docs.google.com/document/d/1b7eNMyO5pENDptTPzfeo3wBvgB3_d09c/edit?usp=sharing&ouid=102220368577968794134&rtpof=true&sd=true';
@@ -11,7 +22,11 @@ export const Header = ({
   setMode,
   t,
   onOpenBlueprints,
-  onResetCamera
+  onResetCamera,
+  leftCollapsed,
+  setLeftCollapsed,
+  rightCollapsed,
+  setRightCollapsed
 }) => {
   const navModes = [
     { id: 'spacecraft', label: t.modes.spacecraft, icon: Cpu },
@@ -69,6 +84,18 @@ export const Header = ({
 
       {/* Actions and Bilingual Switcher (Spanish by default) */}
       <div className="flex items-center gap-2">
+        <button
+          onClick={() => setLeftCollapsed(!leftCollapsed)}
+          className={`p-2 rounded-lg text-xs font-mono border transition-all ${
+            !leftCollapsed
+              ? 'bg-solar-gold/20 text-solar-gold border-solar-gold/50'
+              : 'bg-space-800 text-slate-400 hover:text-white border-space-700'
+          }`}
+          title={leftCollapsed ? 'Abrir panel izquierdo' : 'Cerrar panel izquierdo'}
+        >
+          <PanelLeft className="w-4 h-4" />
+        </button>
+
         <a
           href={REPO_URL}
           target="_blank"
@@ -105,6 +132,18 @@ export const Header = ({
           title={t.resetCamera}
         >
           <RotateCcw className="w-4 h-4" />
+        </button>
+
+        <button
+          onClick={() => setRightCollapsed(!rightCollapsed)}
+          className={`p-2 rounded-lg text-xs font-mono border transition-all ${
+            !rightCollapsed
+              ? 'bg-solar-gold/20 text-solar-gold border-solar-gold/50'
+              : 'bg-space-800 text-slate-400 hover:text-white border-space-700'
+          }`}
+          title={rightCollapsed ? 'Abrir panel derecho' : 'Cerrar panel derecho'}
+        >
+          <PanelRight className="w-4 h-4" />
         </button>
 
         <button

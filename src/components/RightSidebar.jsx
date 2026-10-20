@@ -15,16 +15,19 @@ export const RightSidebar = ({
     return (
       <button
         onClick={() => setCollapsed(false)}
-        className="absolute top-20 right-3 z-20 p-2.5 rounded-xl bg-space-900/90 border border-space-700 text-solar-corona hover:bg-space-800 shadow-xl transition-all"
-        title="Abrir panel derecho"
+        className="absolute top-1/2 -translate-y-1/2 right-0 z-50 py-3.5 px-2 rounded-l-2xl bg-space-900/95 border-y border-l border-solar-gold/70 text-solar-gold hover:bg-space-800 hover:pr-3 shadow-2xl shadow-black/80 transition-all flex items-center gap-1.5 font-mono text-xs font-bold"
+        title="Abrir panel de estado estable"
       >
-        <ChevronLeft className="w-5 h-5" />
+        <span className="[writing-mode:vertical-rl] text-[10px] uppercase tracking-wider">
+          Estado Estable
+        </span>
+        <ChevronLeft className="w-4 h-4" />
       </button>
     );
   }
 
   return (
-    <aside className="w-80 md:w-96 lg:w-[410px] shrink-0 h-[calc(100vh-4rem)] bg-space-950/95 backdrop-blur-xl border-l border-space-800 flex flex-col z-20 transition-all select-none overflow-hidden">
+    <aside className="w-80 lg:w-[350px] shrink-0 h-[calc(100vh-4rem)] bg-space-950/95 backdrop-blur-xl border-l border-space-800 flex flex-col z-20 transition-all select-none overflow-hidden">
       <div className="flex items-center justify-between p-3 border-b border-space-800 bg-space-900/60">
         <button
           onClick={() => setCollapsed(true)}

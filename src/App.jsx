@@ -39,6 +39,10 @@ export default function App() {
         t={t}
         onOpenBlueprints={() => setIsBlueprintModalOpen(true)}
         onResetCamera={handleResetCamera}
+        leftCollapsed={leftCollapsed}
+        setLeftCollapsed={setLeftCollapsed}
+        rightCollapsed={rightCollapsed}
+        setRightCollapsed={setRightCollapsed}
       />
 
       <div className="flex-1 flex relative overflow-hidden">
@@ -54,7 +58,7 @@ export default function App() {
           setCollapsed={setLeftCollapsed}
         />
 
-        <main className="flex-1 h-full relative">
+        <main className="flex-1 min-w-0 h-full relative">
           <SceneViewer
             mode={mode}
             selectedSubsystem={selectedSubsystem}

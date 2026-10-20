@@ -66,16 +66,16 @@ export const SunCutawayCFD = ({ cfdMode = 'natural', selectedLayer, onSelectLaye
 
   useFrame((_, delta) => {
     if (groupRef.current) {
-      groupRef.current.rotation.y += delta * 0.025;
+      groupRef.current.rotation.y += delta * 0.015;
     }
   });
 
-  // Open cutaway wedge: 250° closed shell leaves a 110° open wedge facing forward (+Z)
-  const phiStart = -0.95;
-  const phiLength = Math.PI * 1.38;
+  // Open cutaway wedge: leaves a 105° open wedge directly facing front camera (+Z)
+  const phiStart = -0.92;
+  const phiLength = Math.PI * 1.42;
 
   return (
-    <group ref={groupRef} rotation={[0.32, 0.45, 0]}>
+    <group ref={groupRef} rotation={[0.26, 0.38, 0]}>
       {SHELLS.map((s, idx) => {
         const col = s[cfdMode] || s.natural;
         const isOuter = idx >= 4;
@@ -103,15 +103,15 @@ export const SunCutawayCFD = ({ cfdMode = 'natural', selectedLayer, onSelectLaye
               />
             </mesh>
 
-            {/* Cross-Section Annular Rings on both Cutaway Wedge Planes */}
+            {/* Precise Polar-to-Equator Semi-Annular Cross-Section Planes on both Cutaway Wedge Boundaries */}
             {s.rIn > 0 && (
               <>
                 <mesh rotation={[0, -phiStart + Math.PI / 2, 0]}>
-                  <ringGeometry args={[s.rIn, s.rOut, 36]} />
+                  <ringGeometry args={[s.rIn, s.rOut, 36, 1, 0, Math.PI]} />
                   <meshBasicMaterial color={col} side={THREE.DoubleSide} />
                 </mesh>
                 <mesh rotation={[0, -(phiStart + phiLength) + Math.PI / 2, 0]}>
-                  <ringGeometry args={[s.rIn, s.rOut, 36]} />
+                  <ringGeometry args={[s.rIn, s.rOut, 36, 1, 0, Math.PI]} />
                   <meshBasicMaterial color={col} side={THREE.DoubleSide} />
                 </mesh>
               </>

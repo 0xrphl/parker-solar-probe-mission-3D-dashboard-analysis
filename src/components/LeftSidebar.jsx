@@ -20,16 +20,19 @@ export const LeftSidebar = ({
     return (
       <button
         onClick={() => setCollapsed(false)}
-        className="absolute top-20 left-3 z-20 p-2.5 rounded-xl bg-space-900/90 border border-space-700 text-solar-corona hover:bg-space-800 shadow-xl transition-all"
-        title="Abrir panel"
+        className="absolute top-1/2 -translate-y-1/2 left-0 z-50 py-3.5 px-2 rounded-r-2xl bg-space-900/95 border-y border-r border-solar-gold/70 text-solar-gold hover:bg-space-800 hover:pl-3 shadow-2xl shadow-black/80 transition-all flex items-center gap-1.5 font-mono text-xs font-bold"
+        title="Abrir panel de subsistemas"
       >
-        <ChevronRight className="w-5 h-5" />
+        <ChevronRight className="w-4 h-4" />
+        <span className="[writing-mode:vertical-rl] rotate-180 text-[10px] uppercase tracking-wider">
+          Subsistemas
+        </span>
       </button>
     );
   }
 
   return (
-    <aside className="w-80 md:w-96 lg:w-[410px] shrink-0 h-[calc(100vh-4rem)] bg-space-950/95 backdrop-blur-xl border-r border-space-800 flex flex-col z-20 transition-all select-none overflow-hidden">
+    <aside className="w-80 lg:w-[350px] shrink-0 h-[calc(100vh-4rem)] bg-space-950/95 backdrop-blur-xl border-r border-space-800 flex flex-col z-20 transition-all select-none overflow-hidden">
       <div className="flex items-center justify-between p-3 border-b border-space-800 bg-space-900/60">
         <div className="flex gap-1.5">
           {['subsystems', 'script', 'layers'].map((tab) => (
